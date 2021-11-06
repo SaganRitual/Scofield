@@ -11,6 +11,10 @@
 		D4228F2E2736907400E1FFBA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4228F2D2736907400E1FFBA /* ContentView.swift */; };
 		D4228F302736907600E1FFBA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4228F2F2736907600E1FFBA /* Assets.xcassets */; };
 		D4228F332736907600E1FFBA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4228F322736907600E1FFBA /* Preview Assets.xcassets */; };
+		D4228F3B273690C700E1FFBA /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4228F3A273690C700E1FFBA /* AppSettings.swift */; };
+		D4228F3D273693E400E1FFBA /* AppSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4228F3C273693E400E1FFBA /* AppSettingsView.swift */; };
+		D4228F3F273694AF00E1FFBA /* AppSettingsSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4228F3E273694AF00E1FFBA /* AppSettingsSliderView.swift */; };
+		D4228F4127369A9300E1FFBA /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4228F4027369A9300E1FFBA /* Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +24,10 @@
 		D4228F2F2736907600E1FFBA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D4228F322736907600E1FFBA /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		D4228F342736907600E1FFBA /* Scofield.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Scofield.entitlements; sourceTree = "<group>"; };
+		D4228F3A273690C700E1FFBA /* AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
+		D4228F3C273693E400E1FFBA /* AppSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettingsView.swift; sourceTree = "<group>"; };
+		D4228F3E273694AF00E1FFBA /* AppSettingsSliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettingsSliderView.swift; sourceTree = "<group>"; };
+		D4228F4027369A9300E1FFBA /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +60,10 @@
 		D4228F2A2736907400E1FFBA /* Scofield */ = {
 			isa = PBXGroup;
 			children = (
+				D4228F3A273690C700E1FFBA /* AppSettings.swift */,
+				D4228F3E273694AF00E1FFBA /* AppSettingsSliderView.swift */,
+				D4228F3C273693E400E1FFBA /* AppSettingsView.swift */,
+				D4228F4027369A9300E1FFBA /* Extensions.swift */,
 				D4228F2B2736907400E1FFBA /* ScofieldApp.swift */,
 				D4228F2D2736907400E1FFBA /* ContentView.swift */,
 				D4228F2F2736907600E1FFBA /* Assets.xcassets */,
@@ -139,8 +151,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4228F3F273694AF00E1FFBA /* AppSettingsSliderView.swift in Sources */,
+				D4228F4127369A9300E1FFBA /* Extensions.swift in Sources */,
 				D4228F2E2736907400E1FFBA /* ContentView.swift in Sources */,
+				D4228F3D273693E400E1FFBA /* AppSettingsView.swift in Sources */,
 				D4228F2C2736907400E1FFBA /* ScofieldApp.swift in Sources */,
+				D4228F3B273690C700E1FFBA /* AppSettings.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
