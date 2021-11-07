@@ -8,8 +8,7 @@ enum ActionStatus {
 }
 
 class ArenaScene: SKScene, SKSceneDelegate, ObservableObject {
-    var appSettings: AppSettings!
-
+    let appSettings: AppSettings
     let dotsPool: SpritePool
 
     let sceneDispatch = SceneDispatch()
@@ -32,16 +31,12 @@ class ArenaScene: SKScene, SKSceneDelegate, ObservableObject {
         anchorPoint = CGPoint(x: 0.5, y: 0.5)
     }
 
-    func postInit(appSettings: AppSettings) {
-        self.appSettings = appSettings
-    }
-
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
     override func didMove(to view: SKView) {
-//        self.speed = settings.simulationSpeed
+        self.speed = appSettings.simulationSpeed
 
         view.showsFPS = true
         view.showsNodeCount = true
@@ -51,7 +46,6 @@ class ArenaScene: SKScene, SKSceneDelegate, ObservableObject {
         let startActions = SKAction.run { [self] in
             actionStatus = .running
             readyToRun = true
-            appSettings.initComplete = true
         }
         self.run(startActions)
     }
@@ -61,8 +55,7 @@ class ArenaScene: SKScene, SKSceneDelegate, ObservableObject {
         Display.displayCycle = .updateStarted
 
         guard readyToRun else { return }
-        precondition(appSettings != nil)
-//
+
 //        // We used to be able to set these flags in didMove(to: View), but
 //        // after I upgraded to Monterey, they didn't show up in the view any
 //        // more. Might not be because of Monterey, but atm I don't give a shit,

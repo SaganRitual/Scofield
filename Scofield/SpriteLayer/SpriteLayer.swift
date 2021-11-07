@@ -4,7 +4,8 @@ import SpriteKit
 import SwiftUI
 
 class SpriteLayer: ObservableObject {
-    @EnvironmentObject var settings: AppSettings
+    var appSettings: AppSettings
+    var arenaScene: ArenaScene
 
     // Notice that these are kind of secondary variables;
     // the real source of truth is the alpha in an SKSpriteNode that's
@@ -28,7 +29,10 @@ class SpriteLayer: ObservableObject {
     private func ringRadius() -> CGFloat { ringShape.frame.size.width / 2 }
 
     // Base ring doesn't do much
-    init(scene: ArenaScene) {
+    init(appSettings: AppSettings, arenaScene: ArenaScene) {
+        self.appSettings = appSettings
+        self.arenaScene = arenaScene
+
         layerIndex = 0
 
         let rawSceneRadius = AppConfig.screenDimensions.width / 2
@@ -47,7 +51,7 @@ class SpriteLayer: ObservableObject {
         compensator.fillColor = .clear
         compensator.strokeColor = .clear
 
-        scene.addChild(compensator)
+        arenaScene.addChild(compensator)
         compensator.addChild(ringShape)
 
         spacerShape = nil
@@ -56,7 +60,12 @@ class SpriteLayer: ObservableObject {
     }
 
     // swiftlint:disable function_body_length
-    init(layerIndex: Int, parentLayer: SpriteLayer) {
+    init(
+        appSettings: AppSettings, arenaScene: ArenaScene,
+        layerIndex: Int, parentLayer: SpriteLayer
+    ) {
+        self.appSettings = appSettings
+        self.arenaScene = arenaScene
         self.layerIndex = layerIndex
 
         let fRadius = AppConfig.ringRadiiFractions[layerIndex]

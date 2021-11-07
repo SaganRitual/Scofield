@@ -5,9 +5,10 @@ import SwiftUI
 
 struct ArenaView: View {
     @EnvironmentObject var appSettings: AppSettings
+    @EnvironmentObject var arenaScene: ArenaScene
 
     var body: some View {
-        SpriteView(scene: ArenaScene(appSettings: appSettings))
+        SpriteView(scene: arenaScene)
             .padding(5)
             .frame(
                 minWidth: 400, idealWidth: nil,

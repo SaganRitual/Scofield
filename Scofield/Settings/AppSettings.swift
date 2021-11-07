@@ -8,4 +8,7 @@ class AppSettings: ObservableObject {
     @Published var zoomLevel = AppConfig.zoomLevel
 
     @Published var initComplete = false
+    @Published var cLayers = 2
+
+    @Published var layers = [SpriteLayer]()
 }

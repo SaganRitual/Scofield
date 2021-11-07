@@ -3,35 +3,38 @@
 import SwiftUI
 
 struct SpriteLayerScrollView: View {
-    @EnvironmentObject var scene: ArenaScene
-
-    @State var layers = [SpriteLayer]()
+    @EnvironmentObject var appSettings: AppSettings
+    @EnvironmentObject var arenaScene: ArenaScene
 
     func getLayer(layerIndex: Int) -> SpriteLayer {
-        if layerIndex < layers.count {
+        if layerIndex <= appSettings.layers.count {
             let layer = layerIndex == 0 ?
-            SpriteLayer(scene: scene) :
-            SpriteLayer(layerIndex: layerIndex, parentLayer: layers[layerIndex - 1])
+            SpriteLayer(appSettings: appSettings, arenaScene: arenaScene) :
+            SpriteLayer(
+                appSettings: appSettings, arenaScene: arenaScene,
+                layerIndex: layerIndex,
+                parentLayer: appSettings.layers[layerIndex - 1]
+            )
 
-            layers.append(layer)
+            appSettings.layers.append(layer)
         }
 
-        return layers.last!
+        return appSettings.layers.last!
     }
 
     var body: some View {
         ScrollView {
             VStack {
-                ForEach(0..<layers.count) {
+                ForEach(0..<appSettings.cLayers) {
                     SpriteLayerView(layer: getLayer(layerIndex: $0))
                 }
             }
         }
     }
 }
-
-struct SpriteLayerScrollview_Previews: PreviewProvider {
-    static var previews: some View {
-        SpriteLayerScrollView()
-    }
-}
+//
+//struct SpriteLayerScrollview_Previews: PreviewProvider {
+//    static var previews: some View {
+//        SpriteLayerScrollView()
+//    }
+//}
