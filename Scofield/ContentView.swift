@@ -20,6 +20,7 @@ struct ContentView: View {
                 AppSettingsView()
                 SpriteLayerScrollView()
             }
+            .frame(width: 300)
 
             ArenaView()
         }

@@ -8,7 +8,7 @@ struct AppSettingsView: View {
     var body: some View {
         VStack(alignment: .leading) {
             AppSettingsSliderView(
-                label: "Base rotation Hz", value: appSettings.baseRotationRateHz, in: 0...5
+                label: "Base rotation Hz", value: appSettings.baseRotationRateHz, in: -2...2
             )
 
             AppSettingsSliderView(

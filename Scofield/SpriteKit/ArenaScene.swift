@@ -41,20 +41,26 @@ class ArenaScene: SKScene, SKSceneDelegate, ObservableObject {
         view.showsFPS = true
         view.showsNodeCount = true
 
-        backgroundColor = NSColor.windowBackgroundColor
+        backgroundColor = .black
 
         let startActions = SKAction.run { [self] in
             actionStatus = .running
             readyToRun = true
         }
+
         self.run(startActions)
     }
+
+    var rotationAngle = 0.0
 
     override func update(_ currentTime: TimeInterval) {
         defer { Display.displayCycle = .evaluatingActions }
         Display.displayCycle = .updateStarted
 
         guard readyToRun else { return }
+
+        rotationAngle = 1.5 * sin(0.75 * Double.tau * Double(tickCount % 60) / 60.0) - 0.75 * sin(1.5 * Double.tau * Double(tickCount % 60) / 60.0)
+        self.appSettings.layers[0].ringShape.zRotation += (1 + Double.random(in: -0.01...0.01)) * rotationAngle * .tau / (60 * 3)
 
         self.children[0].setScale(appSettings.zoomLevel)
 
@@ -81,7 +87,7 @@ class ArenaScene: SKScene, SKSceneDelegate, ObservableObject {
         let hue = Double(tickCount % 600) / 600
         let color = NSColor(hue: hue, saturation: 1, brightness: 1, alpha: 1)
 
-        for ix in 1..<2/*spinners.count*/ {
+        for ix in 1..<appSettings.layers.count {
             let easyDot = dotsPool.makeSprite()
             easyDot.size = CGSize(width: 5, height: 5)
             easyDot.color = color
