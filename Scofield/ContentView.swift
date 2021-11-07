@@ -10,7 +10,9 @@ struct ContentView: View {
         let aa = AppSettings()
         self._appSettings = StateObject(wrappedValue: aa)
 
-        let bb = ArenaScene(appSettings: aa)
+        let cc = ArenaSceneModel(appSettings: aa)
+
+        let bb = ArenaScene(sceneModel: cc)
         self._arenaScene = StateObject(wrappedValue: bb)
     }
 
@@ -20,7 +22,11 @@ struct ContentView: View {
                 AppSettingsView()
                 SpriteLayerScrollView()
             }
-            .frame(width: 300)
+            .frame(
+                minWidth: 400, idealWidth: 400, maxWidth: 400,
+                minHeight: nil, idealHeight: AppConfig.screenDimensions.height,
+                maxHeight: .infinity, alignment: .top
+            )
 
             ArenaView()
         }

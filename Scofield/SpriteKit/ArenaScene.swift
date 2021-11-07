@@ -8,27 +8,11 @@ enum ActionStatus {
 }
 
 class ArenaScene: SKScene, SKSceneDelegate, ObservableObject {
-    let appSettings: AppSettings
-    let dotsPool: SpritePool
+    let sceneModel: ArenaSceneModel
 
-    let sceneDispatch = SceneDispatch()
-
-    private var tickCount = 0
-
-    var readyToRun = false
-    var actionStatus = ActionStatus.none
-
-    init(appSettings: AppSettings) {
-        self.appSettings = appSettings
-        self.dotsPool = SpritePool("Markers", "circle-solid", cPreallocate: 10000)
-
-        let size = AppConfig.screenDimensions * 0.75
-        super.init(size: size)
-        print("ArenaScene \(size)")
-
-        self.scaleMode = .aspectFill
-
-        anchorPoint = CGPoint(x: 0.5, y: 0.5)
+    init(sceneModel: ArenaSceneModel) {
+        self.sceneModel = sceneModel
+        super.init(size: AppConfig.screenDimensions * 0.75)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -36,33 +20,34 @@ class ArenaScene: SKScene, SKSceneDelegate, ObservableObject {
     }
 
     override func didMove(to view: SKView) {
-        self.speed = appSettings.simulationSpeed
+        // aspectFit scales the scene such that it always fits inside the
+        // view, letterboxing the scene if necessary
+        self.scaleMode = .aspectFit
+
+        anchorPoint = CGPoint(x: 0.5, y: 0.5)
+
+        self.speed = sceneModel.appSettings.simulationSpeed
 
         view.showsFPS = true
         view.showsNodeCount = true
 
-        backgroundColor = .black
+        backgroundColor = .darkGray
 
         let startActions = SKAction.run { [self] in
-            actionStatus = .running
-            readyToRun = true
+            sceneModel.actionStatus = .running
+            sceneModel.readyToRun = true
         }
 
         self.run(startActions)
     }
 
-    var rotationAngle = 0.0
-
     override func update(_ currentTime: TimeInterval) {
         defer { Display.displayCycle = .evaluatingActions }
         Display.displayCycle = .updateStarted
 
-        guard readyToRun else { return }
+        guard sceneModel.readyToRun else { return }
 
-        rotationAngle = 1.5 * sin(0.75 * Double.tau * Double(tickCount % 60) / 60.0) - 0.75 * sin(1.5 * Double.tau * Double(tickCount % 60) / 60.0)
-        self.appSettings.layers[0].ringShape.zRotation += (1 + Double.random(in: -0.01...0.01)) * rotationAngle * .tau / (60 * 3)
-
-        self.children[0].setScale(appSettings.zoomLevel)
+        self.children[0].setScale(1.0 / sceneModel.appSettings.zoomLevel)
 
         // We used to be able to set these flags in didMove(to: View), but
         // after I upgraded to Monterey, they didn't show up in the view any
@@ -73,28 +58,28 @@ class ArenaScene: SKScene, SKSceneDelegate, ObservableObject {
             view!.showsNodeCount = true
         }
 
-        sceneDispatch.tick(tickCount)
+        sceneModel.sceneDispatch.tick(sceneModel.tickCount)
 
-        tickCount += 1
+        sceneModel.tickCount += 1
     }
 
     override func didEvaluateActions() {
         defer { Display.displayCycle = .simulatingPhysics }
         Display.displayCycle = .didEvaluateActions
 
-        if actionStatus == .none { return }
+        if sceneModel.actionStatus == .none { return }
 
-        let hue = Double(tickCount % 600) / 600
+        let hue = Double(sceneModel.tickCount % 600) / 600
         let color = NSColor(hue: hue, saturation: 1, brightness: 1, alpha: 1)
 
-        for ix in 1..<appSettings.layers.count {
-            let easyDot = dotsPool.makeSprite()
+        for ix in 1..<sceneModel.appSettings.layers.count {
+            let easyDot = sceneModel.dotsPool.makeSprite()
             easyDot.size = CGSize(width: 5, height: 5)
             easyDot.color = color
             easyDot.alpha = 0.85
 
-            let penTip = appSettings.layers[ix].penTip!
-            let dotPosition = appSettings.layers[ix].penShape.convert(penTip.position, to: self)
+            let penTip = sceneModel.appSettings.layers[ix].penTip!
+            let dotPosition = sceneModel.appSettings.layers[ix].penShape.convert(penTip.position, to: self)
 
             easyDot.position = dotPosition
             self.addChild(easyDot)
@@ -102,10 +87,10 @@ class ArenaScene: SKScene, SKSceneDelegate, ObservableObject {
             let pathFadeDurationSeconds = AppConfig.pathFadeDurationSeconds * self.speed
             let fade = SKAction.fadeOut(withDuration: pathFadeDurationSeconds)
             easyDot.run(fade) {
-                self.dotsPool.releaseSprite(easyDot)
+                self.sceneModel.dotsPool.releaseSprite(easyDot)
             }
         }
 
-        if actionStatus == .finished { actionStatus = .none }
+        if sceneModel.actionStatus == .finished { sceneModel.actionStatus = .none }
     }
 }

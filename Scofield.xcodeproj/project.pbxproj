@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D40011062737F75500CDB98D /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = D40011022737F75500CDB98D /* .gitignore */; };
+		D40011072737F75500CDB98D /* swiftlint.sh in Resources */ = {isa = PBXBuildFile; fileRef = D40011032737F75500CDB98D /* swiftlint.sh */; };
+		D40011082737F75500CDB98D /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = D40011042737F75500CDB98D /* .swiftlint.yml */; };
+		D40011092737F75500CDB98D /* .overcommit.yml in Resources */ = {isa = PBXBuildFile; fileRef = D40011052737F75500CDB98D /* .overcommit.yml */; };
+		D400110C27380BFE00CDB98D /* ArenaSceneModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D400110B27380BFE00CDB98D /* ArenaSceneModel.swift */; };
 		D4228F2C2736907400E1FFBA /* ScofieldApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4228F2B2736907400E1FFBA /* ScofieldApp.swift */; };
 		D4228F2E2736907400E1FFBA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4228F2D2736907400E1FFBA /* ContentView.swift */; };
 		D4228F302736907600E1FFBA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4228F2F2736907600E1FFBA /* Assets.xcassets */; };
@@ -33,6 +38,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D40011022737F75500CDB98D /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		D40011032737F75500CDB98D /* swiftlint.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = swiftlint.sh; sourceTree = "<group>"; };
+		D40011042737F75500CDB98D /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
+		D40011052737F75500CDB98D /* .overcommit.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .overcommit.yml; sourceTree = "<group>"; };
+		D400110B27380BFE00CDB98D /* ArenaSceneModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArenaSceneModel.swift; sourceTree = "<group>"; };
 		D4228F282736907400E1FFBA /* Scofield.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Scofield.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4228F2B2736907400E1FFBA /* ScofieldApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScofieldApp.swift; sourceTree = "<group>"; };
 		D4228F2D2736907400E1FFBA /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -74,6 +84,10 @@
 		D4228F1F2736907400E1FFBA = {
 			isa = PBXGroup;
 			children = (
+				D40011022737F75500CDB98D /* .gitignore */,
+				D40011052737F75500CDB98D /* .overcommit.yml */,
+				D40011042737F75500CDB98D /* .swiftlint.yml */,
+				D40011032737F75500CDB98D /* swiftlint.sh */,
 				D4228F2A2736907400E1FFBA /* Scofield */,
 				D4228F292736907400E1FFBA /* Products */,
 			);
@@ -115,6 +129,7 @@
 			isa = PBXGroup;
 			children = (
 				D4228F4C2736CFC200E1FFBA /* ArenaScene.swift */,
+				D400110B27380BFE00CDB98D /* ArenaSceneModel.swift */,
 				D4228F6C2737802B00E1FFBA /* ArenaView.swift */,
 				D4228F502736D02C00E1FFBA /* DisplayCycle.swift */,
 				D4228F4F2736D02C00E1FFBA /* SceneDispatch.swift */,
@@ -165,6 +180,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D4228F372736907600E1FFBA /* Build configuration list for PBXNativeTarget "Scofield" */;
 			buildPhases = (
+				D400110A2737F78400CDB98D /* ShellScript */,
 				D4228F242736907400E1FFBA /* Sources */,
 				D4228F252736907400E1FFBA /* Frameworks */,
 				D4228F262736907400E1FFBA /* Resources */,
@@ -216,12 +232,36 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D40011092737F75500CDB98D /* .overcommit.yml in Resources */,
+				D40011082737F75500CDB98D /* .swiftlint.yml in Resources */,
 				D4228F332736907600E1FFBA /* Preview Assets.xcassets in Resources */,
+				D40011072737F75500CDB98D /* swiftlint.sh in Resources */,
+				D40011062737F75500CDB98D /* .gitignore in Resources */,
 				D4228F302736907600E1FFBA /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		D400110A2737F78400CDB98D /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n./swiftlint.sh\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		D4228F242736907400E1FFBA /* Sources */ = {
@@ -240,6 +280,7 @@
 				D4228F2C2736907400E1FFBA /* ScofieldApp.swift in Sources */,
 				D4228F5B2736D0C900E1FFBA /* GridPoint.swift in Sources */,
 				D4228F3B273690C700E1FFBA /* AppSettings.swift in Sources */,
+				D400110C27380BFE00CDB98D /* ArenaSceneModel.swift in Sources */,
 				D4228F5C2736D0C900E1FFBA /* Deque.swift in Sources */,
 				D4228F4D2736CFC200E1FFBA /* ArenaScene.swift in Sources */,
 				D4228F4327369CC000E1FFBA /* SpriteLayerScrollView.swift in Sources */,

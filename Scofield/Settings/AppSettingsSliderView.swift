@@ -26,7 +26,7 @@ struct AppSettingsSliderView: View {
                 value: $projectedValue,
                 in: range
             ) {
-                _ in appSettings.zoomLevel = 1.0 / projectedValue
+                _ in appSettings.zoomLevel = projectedValue
             }
                 .padding(.trailing, 10)
 

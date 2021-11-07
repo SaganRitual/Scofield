@@ -11,9 +11,11 @@ struct ArenaView: View {
         SpriteView(scene: arenaScene)
             .padding(5)
             .frame(
-                minWidth: 400, idealWidth: nil,
+                minWidth: 400,
+                idealWidth: AppConfig.screenDimensions.height,
                 maxWidth: AppConfig.screenDimensions.height,
-                minHeight: 400, idealHeight: nil,
+                minHeight: 400,
+                idealHeight: AppConfig.screenDimensions.height,
                 maxHeight: AppConfig.screenDimensions.height,
                 alignment: .leading
             )
