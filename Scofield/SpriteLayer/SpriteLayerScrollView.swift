@@ -7,7 +7,7 @@ struct SpriteLayerScrollView: View {
     @EnvironmentObject var arenaScene: ArenaScene
 
     func getLayer(layerIndex: Int) -> SpriteLayer {
-        if layerIndex <= appSettings.layers.count {
+        if layerIndex >= appSettings.layers.count {
             let layer = layerIndex == 0 ?
             SpriteLayer(appSettings: appSettings, arenaScene: arenaScene) :
             SpriteLayer(
@@ -17,16 +17,17 @@ struct SpriteLayerScrollView: View {
             )
 
             appSettings.layers.append(layer)
+            print("new layer; size \(appSettings.layers.count)")
         }
 
-        return appSettings.layers.last!
+        return appSettings.layers[layerIndex]
     }
 
     var body: some View {
         ScrollView {
             VStack {
                 ForEach(0..<appSettings.cLayers) {
-                    SpriteLayerView(layer: getLayer(layerIndex: $0))
+                    SpriteLayerShowHideView(layer: getLayer(layerIndex: $0))
                 }
             }
         }

@@ -8,6 +8,13 @@ struct AppSettingsSliderView: View {
     let label: String
 
     @State var projectedValue: Double
+    let range: ClosedRange<Double>
+
+    init(label: String, value: Double, in range: ClosedRange<Double>) {
+        self.label = label
+        self.projectedValue = value
+        self.range = range
+    }
 
     var body: some View {
         HStack {
@@ -17,10 +24,9 @@ struct AppSettingsSliderView: View {
 
             Slider(
                 value: $projectedValue,
-                in: 0...10
-            ) { isEditing in
-                if isEditing { print("Changing sim speed") }
-                else         { print("Simulation speed", projectedValue) }
+                in: range
+            ) {
+                _ in appSettings.zoomLevel = 1.0 / projectedValue
             }
                 .padding(.trailing, 10)
 
@@ -34,7 +40,7 @@ struct AppSettingsSliderView_Previews: PreviewProvider {
     static var appSettings = AppSettings()
 
     static var previews: some View {
-        AppSettingsSliderView(label: "Zoom", projectedValue: appSettings.zoomLevel)
+        AppSettingsSliderView(label: "Zoom", value: appSettings.zoomLevel, in: 0...10)
             .environmentObject(appSettings)
     }
 }

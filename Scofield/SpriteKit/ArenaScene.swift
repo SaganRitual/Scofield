@@ -56,17 +56,50 @@ class ArenaScene: SKScene, SKSceneDelegate, ObservableObject {
 
         guard readyToRun else { return }
 
-//        // We used to be able to set these flags in didMove(to: View), but
-//        // after I upgraded to Monterey, they didn't show up in the view any
-//        // more. Might not be because of Monterey, but atm I don't give a shit,
-//        // I just wanted to verify that everything isn't broken all to hell.
-//        if view!.showsFPS == false {
-//            view!.showsFPS = true
-//            view!.showsNodeCount = true
-//        }
+        self.children[0].setScale(appSettings.zoomLevel)
+
+        // We used to be able to set these flags in didMove(to: View), but
+        // after I upgraded to Monterey, they didn't show up in the view any
+        // more. Might not be because of Monterey, but atm I don't give a shit,
+        // I just wanted to verify that everything isn't broken all to hell.
+        if view!.showsFPS == false {
+            view!.showsFPS = true
+            view!.showsNodeCount = true
+        }
 
         sceneDispatch.tick(tickCount)
 
         tickCount += 1
+    }
+
+    override func didEvaluateActions() {
+        defer { Display.displayCycle = .simulatingPhysics }
+        Display.displayCycle = .didEvaluateActions
+
+        if actionStatus == .none { return }
+
+        let hue = Double(tickCount % 600) / 600
+        let color = NSColor(hue: hue, saturation: 1, brightness: 1, alpha: 1)
+
+        for ix in 1..<2/*spinners.count*/ {
+            let easyDot = dotsPool.makeSprite()
+            easyDot.size = CGSize(width: 5, height: 5)
+            easyDot.color = color
+            easyDot.alpha = 0.85
+
+            let penTip = appSettings.layers[ix].penTip!
+            let dotPosition = appSettings.layers[ix].penShape.convert(penTip.position, to: self)
+
+            easyDot.position = dotPosition
+            self.addChild(easyDot)
+
+            let pathFadeDurationSeconds = AppConfig.pathFadeDurationSeconds * self.speed
+            let fade = SKAction.fadeOut(withDuration: pathFadeDurationSeconds)
+            easyDot.run(fade) {
+                self.dotsPool.releaseSprite(easyDot)
+            }
+        }
+
+        if actionStatus == .finished { actionStatus = .none }
     }
 }
