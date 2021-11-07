@@ -29,7 +29,7 @@
 		D4228F612736D10100E1FFBA /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4228F602736D10100E1FFBA /* AppConfig.swift */; };
 		D4228F622736D2DA00E1FFBA /* SpriteLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4228F4A2736CDC000E1FFBA /* SpriteLayer.swift */; };
 		D4228F63273709A700E1FFBA /* SpriteLayerShowHIdeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4228F4827369EF200E1FFBA /* SpriteLayerShowHIdeView.swift */; };
-		D4228F672737392E00E1FFBA /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4228F662737392E00E1FFBA /* SplashView.swift */; };
+		D4228F6D2737802B00E1FFBA /* ArenaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4228F6C2737802B00E1FFBA /* ArenaView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,7 +57,7 @@
 		D4228F592736D0C900E1FFBA /* Overload2D.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Overload2D.swift; sourceTree = "<group>"; };
 		D4228F5A2736D0C900E1FFBA /* TriangleFormulae.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TriangleFormulae.swift; sourceTree = "<group>"; };
 		D4228F602736D10100E1FFBA /* AppConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
-		D4228F662737392E00E1FFBA /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
+		D4228F6C2737802B00E1FFBA /* ArenaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArenaView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,7 +96,6 @@
 				D4228F6527370BC700E1FFBA /* SpriteLayer */,
 				D4228F2D2736907400E1FFBA /* ContentView.swift */,
 				D4228F2B2736907400E1FFBA /* ScofieldApp.swift */,
-				D4228F662737392E00E1FFBA /* SplashView.swift */,
 				D4228F2F2736907600E1FFBA /* Assets.xcassets */,
 				D4228F342736907600E1FFBA /* Scofield.entitlements */,
 				D4228F312736907600E1FFBA /* Preview Content */,
@@ -116,6 +115,7 @@
 			isa = PBXGroup;
 			children = (
 				D4228F4C2736CFC200E1FFBA /* ArenaScene.swift */,
+				D4228F6C2737802B00E1FFBA /* ArenaView.swift */,
 				D4228F502736D02C00E1FFBA /* DisplayCycle.swift */,
 				D4228F4F2736D02C00E1FFBA /* SceneDispatch.swift */,
 				D4228F512736D02D00E1FFBA /* SpritePool.swift */,
@@ -232,6 +232,7 @@
 				D4228F3F273694AF00E1FFBA /* AppSettingsSliderView.swift in Sources */,
 				D4228F5E2736D0C900E1FFBA /* Overload2D.swift in Sources */,
 				D4228F5F2736D0C900E1FFBA /* TriangleFormulae.swift in Sources */,
+				D4228F6D2737802B00E1FFBA /* ArenaView.swift in Sources */,
 				D4228F522736D02D00E1FFBA /* SceneDispatch.swift in Sources */,
 				D4228F2E2736907400E1FFBA /* ContentView.swift in Sources */,
 				D4228F3D273693E400E1FFBA /* AppSettingsView.swift in Sources */,
@@ -248,7 +249,6 @@
 				D4228F532736D02D00E1FFBA /* DisplayCycle.swift in Sources */,
 				D4228F63273709A700E1FFBA /* SpriteLayerShowHIdeView.swift in Sources */,
 				D4228F542736D02D00E1FFBA /* SpritePool.swift in Sources */,
-				D4228F672737392E00E1FFBA /* SplashView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

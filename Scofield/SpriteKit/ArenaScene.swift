@@ -19,7 +19,8 @@ class ArenaScene: SKScene, SKSceneDelegate, ObservableObject {
     var readyToRun = false
     var actionStatus = ActionStatus.none
 
-    override init() {
+    init(appSettings: AppSettings) {
+        self.appSettings = appSettings
         self.dotsPool = SpritePool("Markers", "circle-solid", cPreallocate: 10000)
 
         let size = AppConfig.screenDimensions * 0.75
