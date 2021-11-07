@@ -4,15 +4,15 @@ import SpriteKit
 import SwiftUI
 
 struct ContentView: View {
-    @EnvironmentObject var appSettings: AppSettings
-
-    let scene = ArenaScene()
+    @State var appSettings = AppSettings()
+    @State var arenaScene = ArenaScene()
 
     var body: some View {
         ZStack {
             HStack {
-                AppSettingsView()
-                SpriteView(scene: scene)
+                AppSettingsView(appSettings: appSettings)
+
+                SpriteView(scene: arenaScene)
                     .padding(5)
                     .frame(
                         minWidth: 400, idealWidth: nil,
@@ -20,20 +20,21 @@ struct ContentView: View {
                         minHeight: 400, idealHeight: nil,
                         maxHeight: AppConfig.screenDimensions.height,
                         alignment: .leading
-                )
+                    )
             }
 
-            Rectangle()
-                .opacity(appSettings.initComplete ? 0 : 1)
-                .background(Color.blue)
+            SplashView()
+                .environmentObject(appSettings)
+                .environmentObject(arenaScene)
         }
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var appSettings = AppSettings()
+    static var arenaScene = ArenaScene()
 
     static var previews: some View {
-        ContentView().environmentObject(appSettings)
+        ContentView()
     }
 }

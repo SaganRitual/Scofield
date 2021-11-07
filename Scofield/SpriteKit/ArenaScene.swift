@@ -7,22 +7,8 @@ enum ActionStatus {
     case none, running, finished
 }
 
-protocol ArenaSceneSeat {
-    func sceneIsReady() -> Bool
-}
-
-class DummyArena: ArenaSceneSeat {
-    func sceneIsReady() -> Bool { false }
-}
-
-extension ArenaScene: ArenaSceneSeat {
-    func sceneIsReady() -> Bool { true }
-}
-
-var arenaScene = DummyArena()
-
 class ArenaScene: SKScene, SKSceneDelegate, ObservableObject {
-    @EnvironmentObject var settings: AppSettings
+    var appSettings: AppSettings!
 
     let dotsPool: SpritePool
 
@@ -36,13 +22,17 @@ class ArenaScene: SKScene, SKSceneDelegate, ObservableObject {
     override init() {
         self.dotsPool = SpritePool("Markers", "circle-solid", cPreallocate: 10000)
 
-        super.init(size: AppConfig.screenDimensions * 0.75)
+        let size = AppConfig.screenDimensions * 0.75
+        super.init(size: size)
+        print("ArenaScene \(size)")
 
         self.scaleMode = .aspectFill
 
-        print("ArenaScene \(size)")
-
         anchorPoint = CGPoint(x: 0.5, y: 0.5)
+    }
+
+    func postInit(appSettings: AppSettings) {
+        self.appSettings = appSettings
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -57,11 +47,10 @@ class ArenaScene: SKScene, SKSceneDelegate, ObservableObject {
 
         backgroundColor = NSColor.windowBackgroundColor
 
-
         let startActions = SKAction.run { [self] in
             actionStatus = .running
             readyToRun = true
-            settings.initComplete = true
+            appSettings.initComplete = true
         }
         self.run(startActions)
     }
@@ -71,6 +60,7 @@ class ArenaScene: SKScene, SKSceneDelegate, ObservableObject {
         Display.displayCycle = .updateStarted
 
         guard readyToRun else { return }
+        precondition(appSettings != nil)
 //
 //        // We used to be able to set these flags in didMove(to: View), but
 //        // after I upgraded to Monterey, they didn't show up in the view any

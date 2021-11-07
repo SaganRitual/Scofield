@@ -8,7 +8,7 @@ struct ScofieldApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView().environmentObject(appSettings)
+            ContentView()
         }
     }
 }

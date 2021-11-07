@@ -3,7 +3,7 @@
 import SwiftUI
 
 struct AppSettingsView: View {
-    @EnvironmentObject var appSettings: AppSettings
+    var appSettings: AppSettings
 
     var body: some View {
         VStack(alignment: .leading) {
@@ -15,7 +15,9 @@ struct AppSettingsView: View {
 }
 
 struct AppSettingsView_Previews: PreviewProvider {
+    static let appSettings = AppSettings()
+
     static var previews: some View {
-        AppSettingsView().environmentObject(AppSettings())
+        AppSettingsView(appSettings: appSettings)
     }
 }
