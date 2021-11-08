@@ -5,10 +5,10 @@ import AppKit
 struct AppConfig {
     static let pathFadeDurationSeconds = CGFloat(5)
     static let ringColors: [NSColor] = [
-        NSColor(calibratedWhite: 0.1, alpha: 0.1),
-        NSColor(calibratedWhite: 0.2, alpha: 0.1),
-        NSColor(calibratedWhite: 0.3, alpha: 0.1),
-        NSColor(calibratedWhite: 0.4, alpha: 0.1)
+        NSColor(calibratedWhite: 0.2, alpha: 0.5),
+        NSColor(calibratedWhite: 0.2, alpha: 0.4),
+        NSColor(calibratedWhite: 0.2, alpha: 0.3),
+        NSColor(calibratedWhite: 0.2, alpha: 0.2)
     ]
 
     static let ringLineWidth = CGFloat(0.1)

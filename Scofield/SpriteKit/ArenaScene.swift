@@ -12,7 +12,7 @@ class ArenaScene: SKScene, SKSceneDelegate, ObservableObject {
 
     init(sceneModel: ArenaSceneModel) {
         self.sceneModel = sceneModel
-        super.init(size: AppConfig.screenDimensions * 0.75)
+        super.init(size: AppConfig.screenDimensions)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -31,7 +31,7 @@ class ArenaScene: SKScene, SKSceneDelegate, ObservableObject {
         view.showsFPS = true
         view.showsNodeCount = true
 
-        backgroundColor = .darkGray
+//        backgroundColor = .darkGray
 
         let startActions = SKAction.run { [self] in
             sceneModel.actionStatus = .running
